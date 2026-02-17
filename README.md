@@ -1,15 +1,31 @@
 # Job Application Challenge
 
-## How to run
+React application that integrates with an external API to allow candidates to apply for open job positions.
 
-npm install
-npm run dev
+## Features
 
-## Description
+- Fetch candidate information by email
+- Fetch and display open job positions
+- Apply to a job by submitting a GitHub repository URL
+- Loading and error state handling
+- UI state validation (submit disabled when candidate is not valid)
 
-This app fetches open positions and allows candidates to apply by submitting their GitHub repository URL.
+## Project Structure
 
-## Tech stack
+- components/ → UI components
+- services/ → API layer (Axios configuration)
+- App.jsx → Main state container
+
+## Tech Stack
 
 - React (Vite)
 - Axios
+- JavaScript (ES6+)
+
+## How to Run
+
+```bash
+npm install
+npm run dev
+
+```
