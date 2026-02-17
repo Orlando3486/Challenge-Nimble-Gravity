@@ -10,7 +10,6 @@ const CandidateForm = ({ onCandidateLoaded, onCandidateCleared }) => {
     const value = e.target.value;
     setEmail(value);
 
-    // 🔥 ESTA ES LA CLAVE
     onCandidateCleared();
   };
 
