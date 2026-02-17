@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { applyToJob } from "../services/api";
 
 const JobItem = ({ job, candidate }) => {
@@ -6,6 +6,10 @@ const JobItem = ({ job, candidate }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    setSuccess(false);
+  }, [repoUrl]);
 
   const handleSubmit = async () => {
     if (!candidate) {
@@ -15,6 +19,11 @@ const JobItem = ({ job, candidate }) => {
 
     if (!repoUrl) {
       setError("Repository URL is required.");
+      return;
+    }
+
+    if (!repoUrl.startsWith("http")) {
+      setError("Enter a valid repository URL (http://).");
       return;
     }
 
@@ -65,9 +74,7 @@ const JobItem = ({ job, candidate }) => {
         onChange={(e) => setRepoUrl(e.target.value)}
       />
 
-      <button
-        onClick={handleSubmit}
-        disabled={loading || !candidate || !repoUrl}>
+      <button onClick={handleSubmit} disabled={loading || !candidate}>
         {loading ? "Submitting..." : "Submit"}
       </button>
 
