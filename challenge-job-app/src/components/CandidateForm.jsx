@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { getCandidateByEmail } from "../services/api";
 
-const CandidateForm = ({ onCandidateLoaded }) => {
+const CandidateForm = ({ onCandidateLoaded, onCandidateCleared }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    // 🔥 ESTA ES LA CLAVE
+    onCandidateCleared();
+  };
 
   const handleSearch = async () => {
     if (!email) {
@@ -31,7 +39,7 @@ const CandidateForm = ({ onCandidateLoaded }) => {
         type="email"
         placeholder="Enter your email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleEmailChange}
       />
 
       <button onClick={handleSearch} disabled={loading}>
