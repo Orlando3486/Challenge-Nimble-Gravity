@@ -1,6 +1,6 @@
 import JobItem from "./JobItem";
 
-const JobList = ({ jobs }) => {
+const JobList = ({ jobs, candidate }) => {
   if (!jobs.length) {
     return <p>No positions available.</p>;
   }
@@ -8,7 +8,7 @@ const JobList = ({ jobs }) => {
   return (
     <div>
       {jobs.map((job) => (
-        <JobItem key={job.id} job={job} />
+        <JobItem key={job.id} job={job} candidate={candidate} />
       ))}
     </div>
   );

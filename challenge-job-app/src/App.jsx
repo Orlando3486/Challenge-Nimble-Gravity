@@ -40,7 +40,7 @@ function App() {
       {loading && <p>Loading jobs...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {!loading && !error && <JobList jobs={jobs} />}
+      {!loading && !error && <JobList jobs={jobs} candidate={candidate} />}
     </div>
   );
 }

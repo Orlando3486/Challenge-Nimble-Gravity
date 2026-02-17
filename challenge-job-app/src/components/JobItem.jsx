@@ -1,4 +1,48 @@
-const JobItem = ({ job }) => {
+import { useState } from "react";
+import { applyToJob } from "../services/api";
+
+const JobItem = ({ job, candidate }) => {
+  const [repoUrl, setRepoUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!candidate) {
+      setError("You must load your email first.");
+      return;
+    }
+
+    if (!repoUrl) {
+      setError("Repository URL is required.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(false);
+
+      const payload = {
+        uuid: candidate.uuid,
+        jobId: job.id,
+        candidateId: candidate.candidateId,
+        applicationId: candidate.applicationId,
+        repoUrl: repoUrl,
+      };
+
+      const response = await applyToJob(payload);
+
+      if (response.data?.ok) {
+        setSuccess(true);
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to apply to job");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       style={{
@@ -7,6 +51,30 @@ const JobItem = ({ job }) => {
         marginBottom: "10px",
       }}>
       <h3>{job.title}</h3>
+
+      {!candidate && (
+        <p style={{ color: "gray", fontSize: "14px" }}>
+          Load your email before applying.
+        </p>
+      )}
+
+      <input
+        type="text"
+        placeholder="GitHub repository URL"
+        value={repoUrl}
+        onChange={(e) => setRepoUrl(e.target.value)}
+      />
+
+      <button
+        onClick={handleSubmit}
+        disabled={loading || !candidate || !repoUrl}>
+        {loading ? "Submitting..." : "Submit"}
+      </button>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && (
+        <p style={{ color: "green" }}>Application sent successfully!</p>
+      )}
     </div>
   );
 };
