@@ -16,7 +16,7 @@ function App() {
         const response = await getJobs();
         setJobs(response.data);
       } catch (err) {
-        setError("Failed to fetch jobs");
+        setError(err.response?.data?.message || "Failed to fetch jobs");
       } finally {
         setLoading(false);
       }
@@ -27,7 +27,10 @@ function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <CandidateForm onCandidateLoaded={setCandidate} />
+      <CandidateForm
+        onCandidateLoaded={setCandidate}
+        onCandidateCleared={() => setCandidate(null)}
+      />
 
       {candidate && (
         <p>
