@@ -19,6 +19,13 @@ const CandidateForm = ({ onCandidateLoaded, onCandidateCleared }) => {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      setError("Must be a valid email address");
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
