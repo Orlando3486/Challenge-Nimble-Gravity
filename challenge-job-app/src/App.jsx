@@ -26,20 +26,21 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="container">
+      <h1>Job Application Portal</h1>
       <CandidateForm
         onCandidateLoaded={setCandidate}
         onCandidateCleared={() => setCandidate(null)}
       />
 
       {candidate && (
-        <p style={{ color: "green" }}>
+        <p style={{ color: "green", fontSize: "18px", textAlign: "center" }}>
           Candidate loaded: {candidate.firstName} {candidate.lastName}
         </p>
       )}
 
       <div className="container">
-        <h1>Job Open Positions</h1>
+        <h2>Job Open Positions</h2>
 
         {loading && <p>Loading jobs...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
