@@ -2,6 +2,11 @@
 
 React application that integrates with an external API to allow candidates to apply for open job positions.
 
+## Live Demo
+
+You can view the deployed project here:
+https://challengejobapplication.netlify.app
+
 ## Features
 
 - Fetch candidate information by email
@@ -29,3 +34,5 @@ npm install
 npm run dev
 
 ```
+
+
