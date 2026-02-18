@@ -33,7 +33,7 @@ function App() {
       />
 
       {candidate && (
-        <p>
+        <p style={{ color: "green" }}>
           Candidate loaded: {candidate.firstName} {candidate.lastName}
         </p>
       )}
