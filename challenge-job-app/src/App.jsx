@@ -38,12 +38,14 @@ function App() {
         </p>
       )}
 
-      <h1>Job Open Positions</h1>
+      <div className="container">
+        <h1>Job Open Positions</h1>
 
-      {loading && <p>Loading jobs...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {loading && <p>Loading jobs...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {!loading && !error && <JobList jobs={jobs} candidate={candidate} />}
+        {!loading && !error && <JobList jobs={jobs} candidate={candidate} />}
+      </div>
     </div>
   );
 }

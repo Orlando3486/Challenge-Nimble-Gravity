@@ -39,9 +39,13 @@ const CandidateForm = ({ onCandidateLoaded, onCandidateCleared }) => {
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
+        className="input"
       />
 
-      <button onClick={handleSearch} disabled={loading}>
+      <button
+        onClick={handleSearch}
+        disabled={loading}
+        className="submit-button">
         {loading ? "Loading..." : "Load Candidate"}
       </button>
 

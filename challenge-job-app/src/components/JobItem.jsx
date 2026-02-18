@@ -22,8 +22,8 @@ const JobItem = ({ job, candidate }) => {
       return;
     }
 
-    if (!repoUrl.startsWith("http")) {
-      setError("Enter a valid repository URL (http://).");
+    if (!repoUrl.startsWith("https://github.com/")) {
+      setError("Repository URL must start with https://github.com/");
       return;
     }
 
@@ -53,12 +53,7 @@ const JobItem = ({ job, candidate }) => {
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "10px",
-        marginBottom: "10px",
-      }}>
+    <div className="card">
       <h3>{job.title}</h3>
 
       {!candidate && (
@@ -72,9 +67,13 @@ const JobItem = ({ job, candidate }) => {
         placeholder="GitHub repository URL"
         value={repoUrl}
         onChange={(e) => setRepoUrl(e.target.value)}
+        className="input"
       />
 
-      <button onClick={handleSubmit} disabled={loading || !candidate}>
+      <button
+        onClick={handleSubmit}
+        disabled={loading || !candidate}
+        className="submit-button">
         {loading ? "Submitting..." : "Submit"}
       </button>
 
