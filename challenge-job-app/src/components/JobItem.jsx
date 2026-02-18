@@ -67,7 +67,6 @@ const JobItem = ({ job, candidate }) => {
         placeholder="GitHub repository URL"
         value={repoUrl}
         onChange={(e) => setRepoUrl(e.target.value)}
-        className="input"
       />
 
       <button

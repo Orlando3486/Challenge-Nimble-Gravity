@@ -39,7 +39,6 @@ const CandidateForm = ({ onCandidateLoaded, onCandidateCleared }) => {
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
-        className="input"
       />
 
       <button
